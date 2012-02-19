@@ -12,9 +12,9 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [bootstrap-responsive.css, bootstrap.css]
+  stylesheets:    [bootstrap-responsive.css, bootstrap.css, jquery.ui.all.css, jquery.ui.datepicker.css]
 
-  javascripts:    [jquery.1.7.js]
+  javascripts:    [jquery.1.7.js, jquery-ui-1.8.17.custom.min.js, jquery.ui.core.js, jquery.ui.datepicker.js]
 
   has_layout:     true
   layout:         layout

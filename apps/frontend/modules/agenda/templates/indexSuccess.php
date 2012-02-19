@@ -11,6 +11,11 @@
         
         init();
         
+        $(".fecha").live("click", function(){
+            $(".fecha").datepicker();
+            
+        });
+        
         $("#formEditar").live("submit", function(event){
             event.preventDefault();
             var data = $(".labelData");
@@ -31,9 +36,10 @@
             });
             
             if(!actualizar){
-            alert("asd");
                 $("#botonEditar").css("display", "none");
+                
                 $("#botonActualizar").css("display", "inline");
+                
             }else{
              
                 $.ajax({
@@ -61,6 +67,38 @@
                 });
             
             }
+        });
+        
+        $("#formCrear").live("submit", function(event){
+            event.preventDefault();
+            var nombre = $("#nombreEvento").val();
+            var fecha = $("#fechaEvento").val();
+          
+            $.ajax({
+                url: "http://ati2proyecto/api.php/agenda/crear",
+                dataType: "json",
+                data: {"nombre": nombre, "fecha": fecha},
+                success: function(data) {
+               
+                    if(data.stateCode =="200"){
+                            
+                        alert("Evento Creado con exito Con exito");
+                        $("#listaEventos").css("display", "block");
+                        $("#editarEvento").css("display", "none");
+                        init();
+                    }
+                
+                    if(data.stateCode == "404"){
+                    
+                    }
+                
+                },
+                error: function(){
+                    alert("ERROR");
+                }
+            });
+            
+            
         });
     });
     
@@ -115,7 +153,7 @@
             success: function(data) {
                
                 if(data.stateCode =="200"){
-                    var content = "<div class='row well'><button id='botonEditar' class='btn btn-primary'>Crear</button></div>";
+                    var content = "<div class='row well'><button id='botonCrear' onClick='crearEvento()' class='btn btn-primary'>Crear</button></div>";
                     content += "<table class='table table-striped'>";
                     content += "<thead><tr>";
                     content += "<th>#</th>";
@@ -168,5 +206,23 @@
             });
             
         }
+    }
+    
+    function crearEvento(){
+        $("#listaEventos").css("display", "none");
+        
+        var content = "<form id='formCrear' action='agenda/crear' class='form-horizontal'><fieldset>";
+        content += "<legend>Crear Evento</legend>";
+        content += "<div class='control-group'><label class='control-label'>Nombre</label>";
+        content += "<div class='controls'>";
+        content += "<input  id='nombreEvento' type='text' /></div></div>";
+        content += "<div class='control-group'><label class='control-label'>Fecha</label><div class='controls'>";
+        content += "<input  type='text' class='fecha' id='fechaEvento' /></div></div>";
+        content += "<div class='form-actions'><button id='botonEditar' class='btn btn-primary'>Crear</button>";
+        content += "<input type='button' class='btn' onclick='ocultarEditar()' value='Atras' /></div></fieldset></form>";
+        $("#editarEvento").html(content);
+        
+        $("#editarEvento").css("display", "block");
+        
     }
 </script>

@@ -19,12 +19,12 @@ class agendaActions extends sfActions {
         if ($request->isXmlHttpRequest()) {
             $this->setLayout(false);
             $this->setTemplate(false);
-            $nombre = $request->getPostParameter("nombre");
-            $fecha = $request->getPostParameter("fecha");
+            $nombre = $request->getParameter("nombre");
+            $fecha = $request->getParameter("fecha");
 
             $evento = new Evento();
             $evento->setNombre($nombre);
-            $evento->setNombre($fecha);
+            $evento->setFecha($fecha);
             $evento->save();
 
             $data = array('stateCode' => "200"
