@@ -1,0 +1,24 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+
+
+listarEventos:
+  url: /agenda/listar
+  param: {module: agenda, action: listarEventos}
+
+crearEvento:
+  url: /agenda/crear
+  param: {module: agenda, action: crearEvento}
+
+editarEvento:
+  url: /agenda/editar
+  param: {module: agenda, action: editarEvento}
+  
+actualizarEvento:
+  url: /agenda/actualizar
+  param: {module: agenda, action: actualizarEvento}
+
+eliminarEvento:
+  url: /agenda/eliminar
+  param: {module: agenda, action: eliminarEvento}

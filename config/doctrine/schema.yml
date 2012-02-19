@@ -1,0 +1,14 @@
+Evento:
+  actAs: { Timestampable: ~ }
+  tableName: evento
+  columns:
+    id:
+      type: integer(11)
+      primary: true
+      autoincrement: true
+    nombre:
+      type: string(128)
+      notnull: false
+    fecha:
+      type: timestamp
+      notnull: false
