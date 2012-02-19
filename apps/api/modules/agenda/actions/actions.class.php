@@ -10,11 +10,11 @@
  */
 class agendaActions extends sfActions {
 
-    /**
-     *
-     * @param sfWebRequest $request
-     * @return type 
-     */
+/**
+ *
+ * @param sfWebRequest $request
+ * @return type
+ */
     public function executeCrearEvento(sfWebRequest $request) {
         if ($request->isXmlHttpRequest()) {
             $this->setLayout(false);
@@ -37,15 +37,15 @@ class agendaActions extends sfActions {
     /**
      *
      * @param sfWebRequest $request
-     * @return type 
+     * @return type
      */
     public function executeEditarEvento(sfWebRequest $request) {
         if ($request->isXmlHttpRequest()) {
             $this->setLayout(false);
             $this->setTemplate(false);
-            
+
             $id = $request->getParameter("id");
-          
+
             $evento = Doctrine_Core::getTable("Evento")->findOneBy('id', $id);
 
             if ($evento) {
@@ -67,7 +67,7 @@ class agendaActions extends sfActions {
     /**
      *
      * @param sfWebRequest $request
-     * @return type 
+     * @return type
      */
     public function executeActualizarEvento(sfWebRequest $request) {
         if ($request->isXmlHttpRequest()) {
@@ -96,7 +96,7 @@ class agendaActions extends sfActions {
     /**
      *
      * @param sfWebRequest $request
-     * @return type 
+     * @return type
      */
     public function executeEliminarEvento(sfWebRequest $request) {
         if ($request->isXmlHttpRequest()) {
@@ -124,8 +124,8 @@ class agendaActions extends sfActions {
             $this->setTemplate(false);
 
             $eventos = Doctrine::getTable("evento")
-                    ->createQuery('a')
-                    ->fetchArray();
+                ->createQuery('a')
+                ->fetchArray();
 
 
             if (isset($eventos[0])) {
@@ -142,5 +142,122 @@ class agendaActions extends sfActions {
         }
         return $this->renderText("Esta funcion debe ser llamada via Ajax");
     }
+
+    public function executeEventosDia(sfWebRequest $request) {
+        if ($request->isXmlHttpRequest()) {
+            $this->setLayout(false);
+            $this->setTemplate(false);
+            
+            $eventosDia = Doctrine_Core::getTable("Evento")->getEventosDia();
+            
+            
+            if (isset($eventosDia[0])) {
+                
+                $data = array('stateCode' => "200",
+                    'eventosDia' => $eventosDia
+                );
+                return $this->renderText(json_encode($data));
+            }else{
+                $data = array('stateCode' => "201",
+                    "fecha" => date("y-m-d")
+                );
+                return $this->renderText(json_encode($data));
+            }
+            
+            $data = array('stateCode' => "404"
+            );
+            return $this->renderText(json_encode($data));
+        }
+        return $this->renderText("Esta funcion debe ser llamada via Ajax");
+        
+    }
+
+    public function executeEventosSemana(sfWebRequest $request) {
+        if ($request->isXmlHttpRequest()) {
+            $this->setLayout(false);
+            $this->setTemplate(false);
+
+            $eventosSemana = Doctrine_Core::getTable("Evento")->getEventosSemana();
+
+
+            if (isset($eventosSemana[0])) {
+
+                $data = array('stateCode' => "200",
+                    'eventosSemana' => $eventosSemana
+                );
+                return $this->renderText(json_encode($data));
+            }else{
+                $data = array('stateCode' => "201",
+                    "fecha" => date("y-m-d")
+                );
+                return $this->renderText(json_encode($data));
+            }
+
+            $data = array('stateCode' => "404"
+            );
+            return $this->renderText(json_encode($data));
+        }
+        return $this->renderText("Esta funcion debe ser llamada via Ajax");
+
+    }
+
+    public function executeEventosSiete(sfWebRequest $request) {
+        if ($request->isXmlHttpRequest()) {
+            $this->setLayout(false);
+            $this->setTemplate(false);
+
+            $eventosSiete= Doctrine_Core::getTable("Evento")->getEventosSiete();
+
+
+            if (isset($eventosSiete[0])) {
+
+                $data = array('stateCode' => "200",
+                    'eventosSiete' => $eventosSiete
+                );
+                return $this->renderText(json_encode($data));
+            }else{
+                $data = array('stateCode' => "201",
+                    "fecha" => date("y-m-d")
+                );
+                return $this->renderText(json_encode($data));
+            }
+
+            $data = array('stateCode' => "404"
+            );
+            return $this->renderText(json_encode($data));
+        }
+        return $this->renderText("Esta funcion debe ser llamada via Ajax");
+
+    }
+
+    public function executeEventosMes(sfWebRequest $request) {
+        if ($request->isXmlHttpRequest()) {
+            $this->setLayout(false);
+            $this->setTemplate(false);
+
+            $eventosMes = Doctrine_Core::getTable("Evento")->getEventosMes();
+
+
+            if (isset($eventosMes[0])) {
+
+                $data = array('stateCode' => "200",
+                    'eventosMes' => $eventosMes
+                );
+                return $this->renderText(json_encode($data));
+            }else{
+                $data = array('stateCode' => "201",
+                    "fecha" => date("y-m-d")
+                );
+                return $this->renderText(json_encode($data));
+            }
+
+            $data = array('stateCode' => "404"
+            );
+            return $this->renderText(json_encode($data));
+        }
+        return $this->renderText("Esta funcion debe ser llamada via Ajax");
+
+    }
+
 
 }

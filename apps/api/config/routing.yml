@@ -22,3 +22,19 @@ actualizarEvento:
 eliminarEvento:
   url: /agenda/eliminar
   param: {module: agenda, action: eliminarEvento}
+
+eventoDia:
+  url: /agenda/dia
+  param: {module: agenda, action: eventosDia}
+
+eventoSemana:
+  url: /agenda/semana
+  param: {module: agenda, action: eventosSemana}
+
+eventoSemana:
+  url: /agenda/siete
+  param: {module: agenda, action: eventosSiete}
+
+eventoSemana:
+  url: /agenda/mes
+  param: {module: agenda, action: eventosMes}
