@@ -7,4 +7,4 @@ all:
     param:
       dsn:      mysql:host=localhost;dbname=ati2Proyecto
       username: root
-      password: admin
+      password: 123456

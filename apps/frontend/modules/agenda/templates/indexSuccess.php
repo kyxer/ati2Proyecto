@@ -177,9 +177,16 @@
 
                     $("#listaEventos").html(content);
                 }
+                
+               
 
-                if(data.stateCode == "404"){
-
+                if(data.stateCode == "201"){
+                    var content = "<div class='row well'><button id='botonCrear' onClick='crearEvento()' class='btn btn-primary'>Crear</button>";
+                    content += "<button id='botonDia' onClick='eventosDia()' class='btn btn-info'>Eventos Del Dia</button>";
+                    content += "<button id='botonSemana' onClick='eventosSemana()' class='btn btn-success'>Eventos De la Semana</button>";
+                    content += "<button id='botonSiete' onClick='eventosSiete()' class='btn btn-warning'>Eventos 7 dias</button>";
+                    content += "<button id='botonMes' onClick='eventosMes()' class='btn btn-danger'>Eventos Mes</button></div>";
+                     $("#listaEventos").html(content);
                 }
 
             },
@@ -360,7 +367,7 @@
                 }
 
                 if(data.stateCode=="201"){
-                    var content = "<h3>No hay Eventos disponibles para la semana "+data.fecha+"</h3>"
+                    var content = "<h3>No hay Eventos disponibles para dentro de Siete dias</h3>"
                     content += "<br><input type='button' class='btn' onclick='ocultarEditar()' value='Atras' />";
                     $("#editarEvento").html(content);
                     $("#listaEventos").css("display","none");
@@ -409,7 +416,7 @@
                 }
 
                 if(data.stateCode=="201"){
-                    var content = "<h3>No hay Eventos disponibles para la semana "+data.fecha+"</h3>"
+                    var content = "<h3>No hay Eventos disponibles para este mes</h3>"
                     content += "<br><input type='button' class='btn' onclick='ocultarEditar()' value='Atras' />";
                     $("#editarEvento").html(content);
                     $("#listaEventos").css("display","none");

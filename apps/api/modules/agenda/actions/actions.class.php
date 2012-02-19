@@ -136,7 +136,7 @@ class agendaActions extends sfActions {
                 return $this->renderText(json_encode($data));
             }
 
-            $data = array('stateCode' => "404"
+            $data = array('stateCode' => "201"
             );
             return $this->renderText(json_encode($data));
         }
