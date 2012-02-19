@@ -31,10 +31,10 @@ eventoSemana:
   url: /agenda/semana
   param: {module: agenda, action: eventosSemana}
 
-eventoSemana:
+eventoSiete:
   url: /agenda/siete
   param: {module: agenda, action: eventosSiete}
 
-eventoSemana:
+eventoMes:
   url: /agenda/mes
   param: {module: agenda, action: eventosMes}
